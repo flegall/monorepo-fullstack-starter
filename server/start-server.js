@@ -1,4 +1,4 @@
 // @providesModule start-server
 export function startServer() {
-    console.log('starting server';)
+    console.log('starting server');
 }
