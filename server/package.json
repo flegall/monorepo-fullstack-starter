@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "webpack": "../node_modules/.bin/webpack --config webpack/webpack.config.js"
+    "prestart": "yarn run bundle",
+    "start": "node ./dist/server.bundle.js",
+    "bundle": "../node_modules/.bin/webpack --config webpack/webpack.config.js"
   }
 }
