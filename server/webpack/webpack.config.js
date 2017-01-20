@@ -1,4 +1,6 @@
 var path = require('path');
+var webpack = require('webpack');
+var ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, '..'),
@@ -7,6 +9,7 @@ module.exports = {
         path: './dist',
         filename: 'server.bundle.js',
     },
+    devtool: 'sourcemap',
     module: {
         rules: [
             {
@@ -23,4 +26,14 @@ module.exports = {
             }
         ],
     },
+    plugins: [
+        new webpack.BannerPlugin(
+            {
+                banner: 'require("source-map-support").install();',
+                raw: true,
+                entryOnly: false,
+            }
+        ),
+        new ProgressBarPlugin(),
+    ],
 };
