@@ -1,0 +1,9 @@
+{
+  "name": "monorepo-fullstack-starter",
+  "version": "0.0.1",
+  "description": "A starter kit for monorepository javascript full-stack projects",
+  "main": "index.js",
+  "repository": "git@github.com:flegall/monorepo-fullstack-starter.git",
+  "author": "Florent Le Gall <florent.legall@gmail.com>",
+  "license": "MIT"
+}
