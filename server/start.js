@@ -1,4 +1,6 @@
-// @providesModule start-server
+/**
+ * @providesModule server.start
+ */
 import _ from 'lodash';
 
 export function startServer() {

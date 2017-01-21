@@ -1,7 +1,7 @@
 // @flow
 import {expect} from 'chai';
 
-import {startServer} from '../start-server';
+import {startServer} from 'server.start';
 
 describe('startServer', () => {
     it('should display version', () => {
