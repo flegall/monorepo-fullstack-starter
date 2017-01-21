@@ -1,11 +1,12 @@
-var path = require('path');
-var webpack = require('webpack');
-var ProgressBarPlugin = require('progress-bar-webpack-plugin');
-var HasteMap = require('jest-haste-map');
+const path = require('path');
+const webpack = require('webpack');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const HasteMap = require('jest-haste-map');
 const _ = require('lodash');
 
-module.exports = (new HasteMap({
-    "cacheDirectory": "/var/folders/0t/wqk3jxb923189cp81s6jd8m40000gn/T/jest",
+
+const rootDir = path.resolve(__dirname, '../..');
+const hasteMap = new HasteMap({
     "extensions": [
       "snap",
       "js",
@@ -13,10 +14,9 @@ module.exports = (new HasteMap({
       "jsx",
       "node"
     ],
-    "ignorePattern": /SOMECOMPLEXPATTERN/,
+    "ignorePattern": /SOME_COMPLEX_UNLIKELY_TO_HAPPEN_PATTERN/,
     "maxWorkers": 7,
-    "mocksPattern": "__mocks__",
-    "name": "-Users-flegall-code-github-monorepo-fullstack-starter",
+    "name": rootDir.replace(/[\/\\]/g, '_'),
     "platforms": [
       "ios",
       "android"
@@ -25,44 +25,66 @@ module.exports = (new HasteMap({
     "resetCache": false,
     "retainAllFiles": false,
     "roots": [
-      "/Users/flegall/code/github/monorepo-fullstack-starter"
+      rootDir,
     ],
     "useWatchman": true,
-}).build().then((result) => {
-    console.log(JSON.stringify(result.moduleMap.getModule('server.start'), null, 2));
-    return {
-        context: path.resolve(__dirname, '..'),
-        entry: './main.js',
-        output: {
-            path: './dist',
-            filename: 'server.bundle.js',
-        },
-        devtool: 'sourcemap',
-        module: {
-            rules: [
-                {
-                    test: /\.js/,
-                    exclude: /(node_modules)/,
-                    use: [
-                        {
-                            loader: 'babel-loader',
-                            query: {
-                                presets: ['node6']
-                            },
-                        }
-                    ]
+}).build();
+
+const ProvidesModuleResolver = {
+    apply: function(resolver) {
+        resolver.plugin('module', function(request, callback) {
+            hasteMap.then((hasteMap) => {
+                const module = hasteMap.moduleMap.getModule(request.request);
+                if (module) {
+                    callback(null, {
+                        path: module,
+                        query: request.query,
+                        file: true,
+                        resolved: true
+                    });
+                } else {
+                    callback();
                 }
-            ],
-        },
-        plugins: [
-            new webpack.BannerPlugin(
-                {
-                    banner: 'require("source-map-support").install();',
-                    raw: true,
-                    entryOnly: false,
-                }
-            ),
-            new ProgressBarPlugin(),
+            });
+        });
+    }
+};
+
+module.exports = {
+    context: path.resolve(__dirname, '..'),
+    entry: './main.js',
+    output: {
+        path: './dist',
+        filename: 'server.bundle.js',
+    },
+    devtool: 'sourcemap',
+    module: {
+        rules: [
+            {
+                test: /\.js/,
+                exclude: /(node_modules)/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        query: {
+                            presets: ['node6']
+                        },
+                    }
+                ]
+            }
         ],
-    };
-}));
+    },
+    resolve: {
+        plugins: [ProvidesModuleResolver],
+    },
+    plugins: [
+        new webpack.BannerPlugin(
+            {
+                banner: 'require("source-map-support").install();',
+                raw: true,
+                entryOnly: false,
+            }
+        ),
+        new ProgressBarPlugin(),
+    ],
+};

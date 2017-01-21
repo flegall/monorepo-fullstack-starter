@@ -1,6 +1,6 @@
 /**
  * @providesModule server.main
  */
-import {startServer} from './start';
+import {startServer} from 'server.start';
 
 console.log(startServer());
