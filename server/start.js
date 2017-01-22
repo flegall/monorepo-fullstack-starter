@@ -1,5 +1,6 @@
 /**
  * @providesModule server.start
+ * @flow
  */
 import _ from 'lodash';
 
