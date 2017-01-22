@@ -58,6 +58,7 @@ module.exports = {
         filename: 'server.bundle.js',
     },
     devtool: 'sourcemap',
+    target: 'node',
     module: {
         rules: [
             {
