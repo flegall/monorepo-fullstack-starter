@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "prestart": "yarn run bundle",
-    "bundle": "../node_modules/.bin/webpack --config webpack/webpack.config.js",
+    "bundle": "node ../tech/webpack/bundleNodeScript.js ./main.js ./dist/server.bundle.js",
     "start": "node ./dist/server.bundle.js",
     "debug": "yarn run prestart && node --inspect  --debug-brk ./dist/server.bundle.js"
   }
