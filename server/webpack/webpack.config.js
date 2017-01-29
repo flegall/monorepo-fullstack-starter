@@ -4,6 +4,9 @@ const path = require('path');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HasteMapWebpackResolver = require('haste-map-webpack-resolver');
+const hasteMapWebpackResolver = new HasteMapWebpackResolver({
+    rootPath: path.resolve(__dirname, '../..'),
+})
 
 module.exports = {
     context: path.resolve(__dirname, '..'),
@@ -31,9 +34,7 @@ module.exports = {
         ],
     },
     resolve: {
-        plugins: [new HasteMapWebpackResolver({
-            rootPath: path.resolve(__dirname, '../..'),
-        })],
+        plugins: [hasteMapWebpackResolver.resolver],
     },
     plugins: [
         new webpack.BannerPlugin(
@@ -44,5 +45,6 @@ module.exports = {
             }
         ),
         new ProgressBarPlugin(),
+        hasteMapWebpackResolver,
     ],
 };

@@ -1524,11 +1524,17 @@ hash.js@^1.0.0:
   dependencies:
     inherits "^2.0.1"
 
-haste-map-webpack-resolver@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/haste-map-webpack-resolver/-/haste-map-webpack-resolver-1.0.7.tgz#14351a3c89da41dc1b3cc07cb7a8c3647b5a11da"
+haste-map-provider@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/haste-map-provider/-/haste-map-provider-2.0.1.tgz#10a418fb9df582648fbecff3b429d3663257d481"
   dependencies:
     jest-haste-map "18.1.0"
+
+haste-map-webpack-resolver@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/haste-map-webpack-resolver/-/haste-map-webpack-resolver-2.0.1.tgz#0939516cbb3f38963c3c497b99ccc91b6005fb70"
+  dependencies:
+    haste-map-provider "^2.0.1"
 
 hawk@~3.1.3:
   version "3.1.3"

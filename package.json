@@ -22,7 +22,7 @@
     "webpack": "^2.2.0"
   },
   "dependencies": {
-    "haste-map-webpack-resolver": "^1.0.7",
+    "haste-map-webpack-resolver": "^2.0.1",
     "lodash": "^4.17.4"
   },
   "scripts": {
