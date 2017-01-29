@@ -43,7 +43,7 @@
   "scripts": {
     "updateFlowTyped": "flow-typed update",
     "flow": "node_modules/flow-bin/cli.js",
-    "test": "jest --config .jest.conf.json --colors",
+    "test": "BABEL_ENV=test jest --config .jest.conf.json --colors",
     "posttest": "(cd server && yarn run bundle) && (cd web-app && yarn run bundle)"
   }
 }
