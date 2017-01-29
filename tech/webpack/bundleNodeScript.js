@@ -40,7 +40,7 @@ var compiler = webpack({
         path: bundleDir,
         filename: bundleFileName,
     },
-    devtool: 'sourcemap',
+    devtool: 'inline-sourcemap',
     target: 'node',
     module: {
         rules: [
