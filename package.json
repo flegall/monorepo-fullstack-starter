@@ -26,7 +26,6 @@
     "lodash": "^4.17.4"
   },
   "scripts": {
-    "postinstall": "flow-typed install",
     "updateFlowTyped": "flow-typed update",
     "flow": "node_modules/flow-bin/cli.js",
     "test": "jest --config .jest.conf.json --colors"
