@@ -1,28 +1,20 @@
 // @flow
-require("source-map-support").install();
+import 'source-map-support/register';
 
-const Koa = require('koa');
-const serve = require('koa-static');
-const convert = require('koa-convert');
-const koaBodyParser = require('koa-bodyparser');
-const historyApiFallback = require('koa-connect-history-api-fallback');
-const KoaRouter = require('koa-router');
+import Koa from 'koa';
+import serve from 'koa-static';
+import convert from 'koa-convert';
+import koaBodyParser from 'koa-bodyparser';
+import historyApiFallback from 'koa-connect-history-api-fallback';
+import KoaRouter from 'koa-router';
 
 const app = new Koa();
 
 app.use(convert(historyApiFallback({
-    verbose: false,
+    verbose: true,
 })));
-
 app.use(serve('static'));
-
 app.use(koaBodyParser());
-(async function test() {
-    console.log('FUCK');
-    await 1;
-    console.log('FUCK2');
-    throw new Error();
-})().catch(error => console.log(error));
 
 const router = new KoaRouter();
 app.use(router.routes()).use(router.allowedMethods());
