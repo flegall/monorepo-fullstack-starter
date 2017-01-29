@@ -15,6 +15,12 @@ app.use(convert(historyApiFallback({
 app.use(serve('static'));
 
 app.use(koaBodyParser());
+(async function test() {
+    console.log('FUCK');
+    await 1;
+    console.log('FUCK2');
+    throw new Error();
+})().catch(error => console.log(error));
 
 const router = new KoaRouter();
 app.use(router.routes()).use(router.allowedMethods());

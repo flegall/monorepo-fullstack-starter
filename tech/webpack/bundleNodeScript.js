@@ -1,6 +1,8 @@
 // @flow
+const fs = require('fs');
 const path = require('path');
 const yargs = require('yargs');
+const getFileSize = require('filesize');
 
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
@@ -48,7 +50,8 @@ var compiler = webpack({
                     {
                         loader: 'babel-loader',
                         query: {
-                            presets: ['node6']
+                            presets: ['node6'],
+                            plugins: ["transform-async-to-generator"],
                         },
                     }
                 ]
@@ -61,7 +64,7 @@ var compiler = webpack({
     plugins: [
         new webpack.BannerPlugin(
             {
-                banner: 'require("source-map-support").install();',
+                banner: `require("source-map-support").install();`,
                 raw: true,
                 entryOnly: false,
             }
@@ -86,8 +89,10 @@ compiler.run(function(err, stats) {
             });
             process.exit(1);
         }
-        // console.log(stats.compilation.warnings[0]);
-        console.log(`Node script ${mainFileLocal} bundled in ${bundleFileLocal}`, {
+
+        const fileStats = fs.statSync(bundleFile);
+        const fileSize = getFileSize(fileStats.size);
+        console.log(`Node script ${mainFileLocal} bundled in ${bundleFileLocal}: ${fileSize}`, {
             errors: stats.compilation.errors,
             warnings: stats.compilation.warnings,
         });
