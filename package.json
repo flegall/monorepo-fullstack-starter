@@ -13,7 +13,6 @@
     "babel-plugin-syntax-trailing-function-commas": "^6.22.0",
     "babel-plugin-transform-async-to-generator": "^6.22.0",
     "babel-plugin-transform-exponentiation-operator": "^6.22.0",
-    "babel-polyfill": "^6.22.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "chai": "^3.5.0",
@@ -26,10 +25,10 @@
     "promise-monofill": "^1.0.1",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
-    "yargs": "^6.6.0"
+    "yargs": "^6.6.0",
+    "haste-map-webpack-resolver": "^2.0.1"
   },
   "dependencies": {
-    "haste-map-webpack-resolver": "^2.0.1",
     "koa": "2",
     "koa-bodyparser": "next",
     "koa-connect-history-api-fallback": "^0.3.1",
