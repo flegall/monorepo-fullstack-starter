@@ -19,14 +19,14 @@
     "filesize": "^3.5.4",
     "flow-bin": "^0.38.0",
     "flow-typed": "^2.0.0",
+    "haste-map-webpack-resolver": "^2.0.1",
     "jest-cli": "^18.1.0",
     "jest-haste-map": "^18.1.0",
     "progress-bar-webpack-plugin": "^1.9.3",
     "promise-monofill": "^1.0.1",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
-    "yargs": "^6.6.0",
-    "haste-map-webpack-resolver": "^2.0.1"
+    "yargs": "^6.6.0"
   },
   "dependencies": {
     "koa": "2",
@@ -34,7 +34,6 @@
     "koa-connect-history-api-fallback": "^0.3.1",
     "koa-proxy": "^0.7.0",
     "koa-router": "next",
-    "koa-send": "^3.3.0",
     "koa-static": "^2.0.0",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
