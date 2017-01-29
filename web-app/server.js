@@ -1,4 +1,6 @@
 // @flow
+require("source-map-support").install();
+
 const Koa = require('koa');
 const serve = require('koa-static');
 const convert = require('koa-convert');

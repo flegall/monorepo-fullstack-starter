@@ -50,8 +50,11 @@ var compiler = webpack({
                     {
                         loader: 'babel-loader',
                         query: {
-                            presets: ['node6'],
-                            plugins: ["transform-async-to-generator"],
+                            plugins: [
+                                "syntax-trailing-function-commas",
+                                "transform-exponentiation-operator",
+                                "transform-async-to-generator",
+                            ],
                         },
                     }
                 ]
@@ -62,13 +65,6 @@ var compiler = webpack({
         plugins: [hasteMapWebpackResolver.resolver],
     },
     plugins: [
-        new webpack.BannerPlugin(
-            {
-                banner: `require("source-map-support").install();`,
-                raw: true,
-                entryOnly: false,
-            }
-        ),
         new ProgressBarPlugin(),
         hasteMapWebpackResolver,
 
