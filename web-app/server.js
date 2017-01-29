@@ -13,7 +13,6 @@ app.use(convert(historyApiFallback({
 })));
 
 app.use(serve('static'));
-app.use(serve('dist'));
 
 app.use(koaBodyParser());
 

@@ -6,8 +6,9 @@ const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HasteMapWebpackResolver = require('haste-map-webpack-resolver');
 
+const rootPath = path.resolve(__dirname, '../..');
 const hasteMapWebpackResolver = new HasteMapWebpackResolver({
-    rootPath: path.resolve(__dirname, '../../..'),
+    rootPath,
 });
 
 const argv = yargs
@@ -30,6 +31,7 @@ const bundleDir = path.dirname(bundleFile);
 const bundleFileName = path.basename(bundleFile);
 
 var compiler = webpack({
+    context: rootPath,
     entry: mainFile,
     output: {
         path: bundleDir,
@@ -66,6 +68,10 @@ var compiler = webpack({
         ),
         new ProgressBarPlugin(),
         hasteMapWebpackResolver,
+
+        // Ensures the any-promise module is NEVER resolved as it uses
+        // dynamical require() calls.
+        new webpack.NormalModuleReplacementPlugin(/^any\-promise$/, 'promise-monofill'),
     ],
 });
 
@@ -80,6 +86,7 @@ compiler.run(function(err, stats) {
             });
             process.exit(1);
         }
+        // console.log(stats.compilation.warnings[0]);
         console.log(`Node script ${mainFileLocal} bundled in ${bundleFileLocal}`, {
             errors: stats.compilation.errors,
             warnings: stats.compilation.warnings,

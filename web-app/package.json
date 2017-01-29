@@ -4,5 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "bundle": "node ../tech/webpack/bundleNodeScript.js ./server.js ./dist/server.bundle.js",
+    "prestart": "yarn run bundle",
+    "start": "node ./dist/server.bundle.js",
+    "debug": "yarn run prestart && node --inspect  --debug-brk ./dist/server.bundle.js"
   }
 }

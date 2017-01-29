@@ -3118,6 +3118,10 @@ progress@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/progress/-/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
 
+promise-monofill@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/promise-monofill/-/promise-monofill-1.0.1.tgz#31c5f1d3cb9e1f7e7476e4a32281167baf5a17a0"
+
 promise@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/promise/-/promise-7.1.1.tgz#489654c692616b8aa55b0724fa809bb7db49c5bf"

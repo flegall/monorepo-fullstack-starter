@@ -19,6 +19,7 @@
     "jest-cli": "^18.1.0",
     "jest-haste-map": "^18.1.0",
     "progress-bar-webpack-plugin": "^1.9.3",
+    "promise-monofill": "^1.0.1",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
     "yargs": "^6.6.0"
@@ -40,6 +41,6 @@
     "updateFlowTyped": "flow-typed update",
     "flow": "node_modules/flow-bin/cli.js",
     "test": "jest --config .jest.conf.json --colors",
-    "posttest": "(cd server && yarn run bundle)"
+    "posttest": "(cd server && yarn run bundle) && (cd web-app && yarn run bundle)"
   }
 }
