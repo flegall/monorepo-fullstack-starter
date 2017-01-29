@@ -31,6 +31,7 @@ const bundleFile = path.resolve(process.cwd(), bundleFileLocal);
 
 const bundleDir = path.dirname(bundleFile);
 const bundleFileName = path.basename(bundleFile);
+const shortBundleDir = path.relative(rootPath, bundleDir)
 
 var compiler = webpack({
     context: rootPath,
@@ -79,7 +80,7 @@ compiler.run(function(err, stats) {
         throw err;
     } else {
         if (stats.compilation.errors.length > 0) {
-            console.log(`Node script ${mainFileLocal} failed to bundle`, {
+            console.log(`${shortBundleDir} ${mainFileLocal} failed to bundle`, {
                 errors: stats.compilation.errors,
                 warnings: stats.compilation.warnings,
             });
@@ -88,7 +89,7 @@ compiler.run(function(err, stats) {
 
         const fileStats = fs.statSync(bundleFile);
         const fileSize = getFileSize(fileStats.size);
-        console.log(`Node script ${mainFileLocal} bundled in ${bundleFileLocal}: ${fileSize}`, {
+        console.log(`${shortBundleDir} ${mainFileLocal} bundled in ${bundleFileLocal}: ${fileSize}`, {
             errors: stats.compilation.errors,
             warnings: stats.compilation.warnings,
         });
